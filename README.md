@@ -2,9 +2,7 @@
 
 [![Build status][1]][2]
 
-`ng-log` is a set of utilities for working with ngLog-formatted log files. This
-includes a universal batcher which replaces the stock ngStats/ngWorldStats
-batchers, and a library which handles ngLog processing and transmission.
+`ng-log` is a library which handles ngLog processing and transmission.
 
 ## About ngLog, ngStats and ngWorldStats
 
@@ -23,12 +21,6 @@ technologies did so via the following series of procedures:
    generates an HTML representation of all the statistics it has collected.
 
 ## Usage
-
-### Batcher
-
-(TODO)
-
-### Library
 
 To use the `ng-log` library in a [Cargo][3]-based project, add the following to
 the project's `Cargo.toml`:
