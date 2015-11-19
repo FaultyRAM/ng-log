@@ -20,6 +20,119 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 // IN THE SOFTWARE.
 
-#[test]
-fn it_works() {
+use std::io::Error as IoError;
+use std::io::ErrorKind as IoErrorKind;
+use std::io::Result as IoResult;
+use std::io::Read;
+use std::string::ToString;
+
+pub struct NgLog {
+	pub events: Vec<NgEvent>,
+}
+
+pub struct NgEvent {
+	pub timestamp:    String,
+	pub event_class:  Option<String>,
+	pub event_id:     String,
+	pub event_params: Vec<String>,
+}
+
+impl NgLog {
+	pub fn new(capacity: usize) -> NgLog {
+		NgLog {
+			events: Vec::with_capacity(capacity),
+		}
+	}
+
+	pub fn local_from_reader<T>(reader: &mut T) -> IoResult<NgLog> where
+	T: Read {
+		let mut data: Vec<u8> = Vec::with_capacity(0);
+		try!(reader.read_to_end(&mut data));
+		NgLog::from_string(&try!(String::from_utf8(data).map_err(|e|
+			IoError::new(IoErrorKind::InvalidData, format!("{}", e))
+		)))
+	}
+
+	pub fn world_from_reader<T>(reader: &mut T) -> IoResult<NgLog> where
+	T: Read {
+		let mut data: Vec<u8> = Vec::with_capacity(0);
+		try!(reader.read_to_end(&mut data));
+		if data.len() % 2 != 0 {
+			return Err(IoError::new(IoErrorKind::InvalidData, "Non-even log length"))
+		}
+		// TODO: check if this format is used by games other than UT99.
+		let mut decoded: Vec<u8> = Vec::with_capacity(data.len() / 2);
+		for v in data.chunks(2) {
+			decoded.push(v[0] ^ v[1]);
+		}
+		NgLog::from_string(&try!(String::from_utf8(decoded).map_err(|e|
+			IoError::new(IoErrorKind::InvalidData, format!("{}", e))
+		)))
+	}
+
+	pub fn from_string(s: &String) -> IoResult<NgLog> {
+		let mut log = NgLog::new(s.len());
+		for line in s.lines() {
+			let event = try!(NgEvent::from_string(&String::from(line)));
+			log.events.push(event);
+		}
+		Ok(log)
+	}
+}
+
+impl ToString for NgLog {
+	fn to_string(&self) -> String {
+		let mut s = String::with_capacity(0);
+		for v in &self.events {
+			s = s + &v.to_string() + &"\n";
+		}
+		s
+	}
+}
+
+impl NgEvent {
+	pub fn new(timestamp: String, class: Option<String>, id: String, params: Vec<String>) -> NgEvent {
+		NgEvent {
+			timestamp:    timestamp,
+			event_class:  class,
+			event_id:     id,
+			event_params: params,
+		}
+	}
+
+	pub fn from_string(s: &String) -> IoResult<NgEvent> {
+		let mut columns: Vec<String> = s.split('\t').map(|s| String::from(s)).collect();
+		if columns.len() < 2 {
+			return Err(IoError::new(IoErrorKind::InvalidData, "Bad event string"))
+		} else if columns.len() == 2 {
+			Ok(NgEvent::new(
+				columns.remove(0),
+				None,
+				columns.remove(0),
+				Vec::with_capacity(0)
+			))
+		} else {
+			Ok(NgEvent::new(
+				columns.remove(0),
+				Some(columns.remove(0)),
+				columns.remove(0),
+				columns.clone()
+			))
+		}
+	}
+}
+
+impl ToString for NgEvent {
+	fn to_string(&self) -> String {
+		let mut s = String::with_capacity(0);
+		s = s + &self.timestamp;
+		if let Some(v) = self.event_class.clone() {
+			s = s + &"\t" + &v;
+		}
+		s = s + &"\t" + &self.event_id;
+		for v in self.event_params.iter() {
+			s = s + &"\t" + &v;
+		}
+		s
+	}
 }
