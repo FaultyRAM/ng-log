@@ -22,7 +22,7 @@
 
 [package]
 name = "ng-log"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["FaultyRAM <explodingpsu@gmail.com>"]
 description = "ngLog processing utilities."
 documentation = "https://faultyram.github.io/ng-log/ng_log/"
