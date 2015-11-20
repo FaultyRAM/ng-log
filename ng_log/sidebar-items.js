@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["NgEvent","A type representing an ngLog event."],["NgLog","A type representing an ngLog-formatted file."]]});
