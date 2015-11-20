@@ -30,6 +30,6 @@ documentation = "https://faultyram.github.io/ng-log/ng_log/"
 repository = "https://github.com/FaultyRAM/ng-log"
 readme = "README.md"
 keywords = [
-	"NetGames USA", "ngLog", "ngStats", "ngWorldStats", "Unreal Tournament"
+	"ngLog", "ngStats", "ngWorldStats"
 ]
-license = "MIT License"
+license = "MIT"
