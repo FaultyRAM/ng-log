@@ -47,8 +47,12 @@
 //! use std::io::Read;
 //! use std::string::ToString;
 //!
-//! let mut file = OpenOptions::new().read(true).open("./tests/ngLog_Example_Log_File.log.txt").unwrap();
-//! println!("{}", NgLog::local_from_reader(&mut file).unwrap().to_string());
+//! let mut file = OpenOptions::new()
+//! 	.read(true)
+//! 	.open("./tests/ngLog_Example_Log_File.log.txt")
+//! 	.unwrap();
+//! let log = NgLog::local_from_reader(&mut file).unwrap();
+//! println!("{}", log.to_string());
 //! ```
 
 use std::io::Error as IoError;
