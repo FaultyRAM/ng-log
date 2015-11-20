@@ -63,24 +63,40 @@ use std::io::Result as IoResult;
 use std::io::Read;
 use std::string::ToString;
 
+/// A type representing an ngLog-formatted file.
 pub struct NgLog {
+	/// A collection of ngLog events.
 	pub events: Vec<NgEvent>,
 }
 
+/// A type representing an ngLog event.
 pub struct NgEvent {
+	/// A floating-point value representing the elapsed time since gameplay began.
 	pub timestamp:    String,
+	/// The category to which this event belongs, if any.
 	pub event_class:  Option<String>,
+	/// The type of this event.
 	pub event_id:     String,
+	/// Optional data points associated with this event.
 	pub event_params: Vec<String>,
 }
 
 impl NgLog {
+	/// Constructs a new `NgLog` instance, allocating memory for at least
+	/// `capacity` events.
 	pub fn new(capacity: usize) -> NgLog {
 		NgLog {
 			events: Vec::with_capacity(capacity),
 		}
 	}
 
+	/// Constructs a new `NgLog` instance using data from a type implementing
+	/// `std::io::Read`. The data is interpreted as a UTF-8 string.
+	///
+	/// # Failures
+	///
+	/// If the input data is either not valid UTF-8 or malformed, this method
+	/// returns an `std::io::Error` instance describing the error.
 	pub fn local_from_reader<T>(reader: &mut T) -> IoResult<NgLog> where
 	T: Read {
 		let mut data: Vec<u8> = Vec::with_capacity(0);
@@ -90,6 +106,14 @@ impl NgLog {
 		)))
 	}
 
+	/// Constructs a new `NgLog` instance using data from a type implementing
+	/// `std::io::Error`. The data is fed through a decoding algorithm, then
+	/// interpreted as a UTF-8 string.
+	///
+	/// # Failures
+	///
+	/// If the input data is either not valid UTF-8 or malformed, this method
+	/// returns an `std::io::Error` instance describing the error.
 	pub fn world_from_reader<T>(reader: &mut T) -> IoResult<NgLog> where
 	T: Read {
 		let mut data: Vec<u8> = Vec::with_capacity(0);
@@ -107,6 +131,12 @@ impl NgLog {
 		)))
 	}
 
+	/// Constructs a new `NgLog` instance from the given input string.
+	///
+	/// # Failures
+	///
+	/// If the input data is malformed, this method returns an `std::io::Error`
+	/// instance describing the error.
 	pub fn from_string(s: &String) -> IoResult<NgLog> {
 		let mut log = NgLog::new(s.len());
 		for line in s.lines() {
@@ -128,6 +158,7 @@ impl ToString for NgLog {
 }
 
 impl NgEvent {
+	/// Constructs a new `NgEvent` instance from the given arguments.
 	pub fn new(timestamp: String, class: Option<String>, id: String, params: Vec<String>) -> NgEvent {
 		NgEvent {
 			timestamp:    timestamp,
@@ -137,6 +168,12 @@ impl NgEvent {
 		}
 	}
 
+	/// Constructs a new `NgEvent` instance from the given input string.
+	///
+	/// # Failures
+	///
+	/// If the given data is malformed, this method returns an `std::io::Error`
+	/// instance describing the error.
 	pub fn from_string(s: &String) -> IoResult<NgEvent> {
 		let mut columns: Vec<String> = s.split('\t').map(|s| String::from(s)).collect();
 		if columns.len() < 2 {
