@@ -2,6 +2,8 @@
 
 [![Build status][1]][2]
 
+[Documentation][3]
+
 `ng-log` is a library which handles ngLog processing and transmission.
 
 ## About ngLog, ngStats and ngWorldStats
@@ -34,4 +36,5 @@ And add the following to the project's crate root:
 
 [1]: https://travis-ci.org/FaultyRAM/ng-log.svg?branch=master
 [2]: https://travis-ci.org/FaultyRAM/ng-log
-[3]: https://crates.io
+[3]: https://faultyram.github.io/ng-log/ng_log/
+[4]: https://crates.io
