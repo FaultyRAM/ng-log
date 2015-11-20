@@ -20,6 +20,37 @@
 // FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 // IN THE SOFTWARE.
 
+//! ngLog processing utilities.
+//!
+//! ngLog is a textual file format designed for recording gameplay events. Each
+//! line of text in an ngLog-formatted file represents an *event*, consisting
+//! of several parameters in the following order, each separated by an ASCII
+//! TAB control code:
+//!     * A timestamp: a floating-point number representing the time in
+//!       seconds that have elapsed since gameplay began;
+//!     * An optional event class, describing the category to which the event
+//!       belongs;
+//!     * An event ID, describing the type of event which occurred;
+//!     * Zero or more *event parameters*, each representing an arbitrary data
+//!       point associated with the event.
+//! ngLog was used in conjunction with ngStats and ngWorldStats to provide both
+//! local and online statistical analysis and tracking. Supported video games
+//! would create two copies of an ngLog file upon gameplay completion: a copy
+//! for local processing, and an encoded copy to be sent to a *world server*.
+//! This crate provides functionality for processing both forms, from either a
+//! `String` or a type that implements `std::io::Read`. For example:
+//!
+//! ```rust
+//! use ng_log::NgLog;
+//!
+//! use std::fs::OpenOptions;
+//! use std::io::Read;
+//! use std::string::ToString;
+//!
+//! let mut file = OpenOptions::new().read(true).open("./tests/ngLog_Example_Log_File.log.txt").unwrap();
+//! println!("{}", NgLog::local_from_reader(&mut file).unwrap().to_string());
+//! ```
+
 use std::io::Error as IoError;
 use std::io::ErrorKind as IoErrorKind;
 use std::io::Result as IoResult;

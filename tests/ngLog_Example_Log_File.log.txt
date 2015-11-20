@@ -1,0 +1,94 @@
+0.0	info	Log_Standard	ngLog
+0.0	info	Log_Version	1.2
+0.0	info	Log_Info_URL	http://www.netgamesusa.com/ngLog/
+0.0	info	Game_Name	Quake II
+0.0	info	Game_Version	3.20 x86 Oct 16 1998 Win32 RELEASE
+0.0	info	Game_Author	id Software, Inc.
+0.0	info	Game_Author_URL	http://www.idsoftware.com
+0.0	info	Game_Patch	nglog
+0.0	info	Game_Patch_Name	nglog Quake II Mod
+0.0	info	Game_Patch_Version	1.3
+0.0	info	Game_Patch_Decoder_Ring_URL	http://www.netgamesusa.com/ngLog/nglog
+0.0	info	Game_Patch_Author	NetGames USA
+0.0	info	Game_Patch_Author_URL	http://www.netgamesusa.com/
+0.0	info	Server_Address	1.1.1.9
+0.0	info	Server_Port	27910
+0.0	info	Absolute_Time	1999.06.13.00.49.24.320.-6.0
+0.0	Game_Init	1999.06.13.00.49.24.320.-6.0
+0.0	info	timelimit	10
+0.0	info	fraglimit	0
+0.0	info	cheats	0
+0.0	info	dmflags	17936
+0.0	info	maxclients	8
+0.0	info	hostname	BotanikA's Server
+0.0	info	map	q2dm1	The Edge
+0.0	Game_Start
+2.0	Player_Connect	BotanikA	0
+2.0	Player_Respawn	0
+2.0	Player_Enter	BotanikA	0
+66.2	Player_Connect	Gawain	1
+66.2	Player_Respawn	1
+66.2	Player_Enter	Gawain	1
+72.0	Item_Pickup	Rocket Launcher	0	1	88
+79.0	Item_Pickup	Jacket Armor	0	1	80
+84.4	Item_Pickup	Combat Armor	0	1	87
+86.6	Item_Pickup	Mega_Health	0	1	88
+90.4	Kill	1	Rocket Launcher	1	153	0	Blaster	0	153
+91.5	Player_Respawn	0
+103.0	Item_Pickup	Chaingun	0	1	88
+108.1	Item_Pickup	Combat Armor	0	1	75
+129.2	Item_Pickup	Rocket Launcher	0	0	29
+131.7	Suicide	0	Rocket Launcher	-1	29
+132.8	Player_Respawn	0
+137.6	Item_Pickup	Shotgun	0	0	20
+146.7	Kill	0	Shotgun	1	23	1	Rocket Launcher	0	75
+147.7	Item_Pickup	Rocket Launcher	0	0	18
+147.8	Player_Respawn	1
+154.4	Item_Pickup	Combat Armor	0	0	36
+158.0	Item_Pickup	Shotgun	0	0	22
+167.5	Item_Pickup	Super Shotgun	0	1	108
+172.0	Kill	1	Super Shotgun	1	81	0	Rocket Launcher	0	50
+172.3	Item_Pickup	Rocket Launcher	0	1	91
+173.1	Player_Respawn	0
+181.9	Item_Pickup	Railgun	0	0	46
+204.4	Item_Pickup	Mega_Health	0	0	25
+212.2	Kill	0	Railgun	1	27	1	Super Shotgun	0	77
+213.3	Player_Respawn	1
+240.4	Kill	0	Railgun	1	67	1	Blaster	0	77
+241.5	Player_Respawn	1
+267.4	Kill	1	Grenades	1	78	0	Railgun	0	58
+268.5	Player_Respawn	0
+268.6	Item_Pickup	Railgun	0	1	115
+289.1	Kill	1	Railgun	1	113	0	Blaster	0	97
+290.2	Player_Respawn	0
+298.9	Item_Pickup	Jacket Armor	0	0	29
+301.6	Item_Pickup	HyperBlaster	0	0	24
+304.5	Kill	0	HyperBlaster	1	60	1	Railgun	0	64
+305.6	Player_Respawn	1
+306.3	Item_Pickup	Combat Armor	0	0	42
+314.4	Item_Pickup	Machinegun	0	1	64
+322.7	Kill	1	Machinegun	1	109	0	HyperBlaster	0	83
+322.7	Item_Pickup	HyperBlaster	0	1	109
+323.8	Player_Respawn	0
+343.9	Item_Pickup	Chaingun	0	0	38
+353.1	Item_Pickup	Combat Armor	0	0	47
+360.5	Kill	0	Chaingun	1	29	1	Machinegun	0	78
+361.6	Player_Respawn	1
+369.6	Item_Pickup	Super Shotgun	0	1	128
+373.9	Kill	1	Super Shotgun	1	95	0	Chaingun	0	78
+375.0	Player_Respawn	0
+376.5	Item_Pickup	Chaingun	0	1	109
+401.8	Item_Pickup	HyperBlaster	0	1	70
+408.8	Item_Pickup	Rocket Launcher	0	1	72
+414.3	Suicide	0	Drowned	-1	48
+415.0	Item_Pickup	Grenade Launcher	0	1	81
+415.4	Player_Respawn	0
+426.0	Suicide	1	Fell	-1	84
+427.1	Player_Respawn	1
+449.8	Item_Pickup	Rocket Launcher	0	0	18
+452.3	Suicide	0	Grenades	-1	42
+453.4	Player_Respawn	0
+458.9	Item_Pickup	Shotgun	0	1	89
+600.0	Game_End	timelimit
+606.0	Player_Leave	Gawain	1
+608.4	Game_End	server
