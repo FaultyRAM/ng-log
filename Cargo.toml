@@ -32,4 +32,4 @@ readme = "README.md"
 keywords = [
 	"ngLog", "ngStats", "ngWorldStats"
 ]
-license = "MIT"
+license = "MIT OR Apache-2.0"
